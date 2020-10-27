@@ -3,7 +3,6 @@ from login import login_user, logout_user
 from app.auth import auth
 from app.models import User
 
-
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -19,6 +18,8 @@ def login():
         print(is_correct_password)
         if not is_correct_password:
             error = 'Non existant Password'
+
+
             return render_template('login.html', error=error)
         login_user(user)
         return redirect('/')
@@ -54,7 +55,7 @@ def signup():
             user = User(username=username, email=email)
             user.set_password(password)
             user.save()
-
+            
             # email_message("HELLO!Welcome to  Pitch", "email/hello", user.email, user=user)
             return redirect(url_for('auth.login'))
 
