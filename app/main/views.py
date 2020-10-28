@@ -1,11 +1,11 @@
+from threading import main_thread
 from flask import render_template, redirect, url_for
 from flask_login import login_required, current_user
-from ..models import main
-from .forms import PostForm, CommentForm, UpdateProfile
+from . import PostForm, CommentForm, UpdateProfile, main
 from ..models import Post, Comment, User, Upvote, Downvote
 
 
-@main.route('/')
+@main_thread.route('/')
 def index():
     posts = Post.query.all()
     product = Post.query.filter_by(category='product').all()
