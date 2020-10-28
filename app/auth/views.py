@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user,login_required,logout_user
-from app.auth import auth
+from . import auth
 from app.models import User
 
 @auth.route('/login', methods=['GET', 'POST'])

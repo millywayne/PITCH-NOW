@@ -4,6 +4,7 @@ from app import create_app, db
 from app.models import User
 
 app = create_app('production')
+app = create_app('test')
 
 manager = Manager(app)
 migrate = Migrate(app, db)
@@ -22,7 +23,13 @@ def test():
     import unittest
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
+    
 
+def test_get_review_by_id(self, Review):
+
+    self.new_review.save_review()
+    got_reviews = Review.get_reviews(12345)
+    self.assertTrue(len(got_reviews) == 1)
 
 if __name__ == "__main__":
     manager.run()
